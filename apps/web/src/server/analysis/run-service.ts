@@ -96,6 +96,18 @@ export async function setAnalysisRunState(
   }
 }
 
+export async function setAnalysisTriggerRunId(runId: string, triggerRunId: string): Promise<void> {
+  const admin = createSupabaseAdminClient();
+  const { error } = await admin
+    .from("analysis_runs")
+    .update({ trigger_run_id: triggerRunId })
+    .eq("id", analysisRunIdSchema.parse(runId));
+
+  if (error) {
+    throw new Error("Unable to record analysis task.");
+  }
+}
+
 function readResearchQuestions(value: Json): string[] {
   return Array.isArray(value)
     ? value.filter((question): question is string => typeof question === "string")
