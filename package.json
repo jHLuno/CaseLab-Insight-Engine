@@ -1,0 +1,21 @@
+{
+  "name": "caselab-insight-engine",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@11.9.0",
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=11.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @caselab/web dev",
+    "lint": "pnpm --filter @caselab/web lint",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm --filter @caselab/web test",
+    "test:integration": "pnpm --filter @caselab/web test:integration",
+    "test:e2e": "pnpm --filter @caselab/web test:e2e",
+    "build": "pnpm -r build",
+    "supabase:start": "supabase start",
+    "supabase:db:reset": "supabase db reset"
+  }
+}
