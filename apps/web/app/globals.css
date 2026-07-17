@@ -346,6 +346,92 @@ h1 {
   margin-top: 1.5rem;
 }
 
+.sources-section {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.source-forms {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.source-form {
+  display: grid;
+  gap: 0.6rem;
+  padding: 1.25rem;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+}
+
+.source-form h2 {
+  font-size: 1.5rem;
+}
+
+.source-form input,
+.source-form textarea {
+  width: 100%;
+  padding: 0.65rem;
+  font: inherit;
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  background: white;
+}
+
+.source-form textarea {
+  resize: vertical;
+}
+
+.source-form p,
+.source-list__empty {
+  color: var(--muted-ink);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.source-form button {
+  min-height: 2.75rem;
+  color: white;
+  cursor: pointer;
+  border: 1px solid var(--evidence);
+  background: var(--evidence);
+}
+
+.source-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.source-list li {
+  display: grid;
+  grid-template-columns: 8rem 1fr auto;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.source-list span,
+.source-list small {
+  color: var(--muted-ink);
+}
+
+@media (max-width: 700px) {
+  .source-forms {
+    grid-template-columns: 1fr;
+  }
+
+  .source-list li {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+}
+
 @media (max-width: 700px) {
   .home-page {
     grid-template-columns: 1fr;
