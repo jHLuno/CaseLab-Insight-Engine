@@ -55,4 +55,14 @@ describe("Supabase migration contract", () => {
 
     expect(migrationSql).toContain("owner_id = auth.uid()::text");
   });
+
+  it("creates controlled analysis snapshots and atomic result persistence", async () => {
+    const migrationSql = await readMigrations();
+
+    expect(migrationSql).toContain("create function public.queue_analysis_run");
+    expect(migrationSql).toContain("create function public.retry_analysis_run");
+    expect(migrationSql).toContain("create function public.persist_verified_analysis_output");
+    expect(migrationSql).toContain("evidence_items");
+    expect(migrationSql).toContain("analysis_runs");
+  });
 });

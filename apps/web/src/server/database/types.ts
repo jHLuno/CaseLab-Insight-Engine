@@ -77,6 +77,9 @@ export type Database = {
     Functions: {
       create_project_with_questions: { Args: { project_description: string; project_name: string; project_questions?: Json; project_research_objective: string }; Returns: Database["public"]["Tables"]["projects"]["Row"] };
       create_source_with_chunks: { Args: { input_character_count: number; input_chunks: Json; input_normalized_content: string; input_project_id: string; input_source_id: string; input_storage_path: string | null; input_title: string; input_type: "pasted_text" | "text_upload" }; Returns: Database["public"]["Tables"]["sources"]["Row"] };
+      queue_analysis_run: { Args: { input_model: string; input_project_id: string; input_prompt_version: string }; Returns: Database["public"]["Tables"]["analysis_runs"]["Row"] };
+      retry_analysis_run: { Args: { input_run_id: string }; Returns: Database["public"]["Tables"]["analysis_runs"]["Row"] };
+      persist_verified_analysis_output: { Args: { input_output: Json; input_run_id: string; input_usage?: Json }; Returns: undefined };
       delete_project_cascade: { Args: { project_uuid: string }; Returns: { storage_path: string }[] };
       delete_source_cascade: { Args: { source_uuid: string }; Returns: { storage_path: string }[] };
       provision_personal_organization: { Args: { owner_email: string; owner_user_id: string }; Returns: string };
