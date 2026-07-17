@@ -421,6 +421,90 @@ h1 {
   color: var(--muted-ink);
 }
 
+.analysis-section {
+  display: grid;
+  gap: 1.1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--ink);
+}
+
+.analysis-action {
+  display: grid;
+  gap: 0.55rem;
+  justify-items: start;
+}
+
+.analysis-action button {
+  min-height: 2.8rem;
+  padding: 0.55rem 0.9rem;
+  cursor: pointer;
+  color: white;
+  border: 1px solid var(--evidence);
+  background: var(--evidence);
+}
+
+.analysis-action button:disabled {
+  cursor: not-allowed;
+  color: var(--muted-ink);
+  border-color: var(--rule);
+  background: #dde1dc;
+}
+
+.analysis-action p,
+.analysis-status {
+  color: var(--muted-ink);
+  line-height: 1.5;
+}
+
+.analysis-results {
+  display: grid;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.analysis-results section {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.analysis-results h3 {
+  font-size: 1.45rem;
+}
+
+.evidence-cards,
+.analysis-results section > .analysis-card {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.evidence-card,
+.analysis-card {
+  display: grid;
+  gap: 0.55rem;
+  padding: 1rem;
+  border-left: 3px solid var(--evidence);
+  background: var(--surface);
+}
+
+.evidence-card p {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.1rem;
+  line-height: 1.45;
+}
+
+.evidence-card small,
+.analysis-card small,
+.analysis-card__label {
+  color: var(--muted-ink);
+}
+
+.evidence-card a,
+.analysis-card a {
+  width: fit-content;
+  color: var(--evidence);
+}
+
 @media (max-width: 700px) {
   .source-forms {
     grid-template-columns: 1fr;
