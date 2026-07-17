@@ -207,6 +207,130 @@ h1 {
   color: var(--evidence);
 }
 
+.app-page {
+  display: grid;
+  gap: 2.5rem;
+  max-width: 70rem;
+  min-height: 100svh;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 6vw, 5rem);
+}
+
+.app-header {
+  display: flex;
+  gap: 2rem;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.app-header h1,
+.form-page h1,
+.project-detail > h1 {
+  max-width: 14ch;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+}
+
+.button-link,
+.project-form button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.8rem;
+  padding: 0.55rem 0.9rem;
+  color: white;
+  text-decoration: none;
+  border: 1px solid var(--evidence);
+  background: var(--evidence);
+}
+
+.project-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.project-list li {
+  border-bottom: 1px solid var(--rule);
+}
+
+.project-list a {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.5rem 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.project-list a:hover h2,
+.project-list a:focus-visible h2 {
+  color: var(--evidence);
+}
+
+.project-list span,
+.back-link {
+  color: var(--evidence);
+  font-family: "Courier New", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.project-list p,
+.empty-state > p {
+  max-width: 45rem;
+  color: var(--muted-ink);
+  line-height: 1.5;
+}
+
+.empty-state,
+.form-page,
+.project-detail {
+  display: grid;
+  gap: 1.15rem;
+  align-content: start;
+}
+
+.empty-state {
+  padding: 2rem;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+}
+
+.project-form {
+  display: grid;
+  gap: 0.6rem;
+  max-width: 42rem;
+  margin-top: 1.25rem;
+}
+
+.project-form label span {
+  color: var(--muted-ink);
+}
+
+.project-form input,
+.project-form textarea {
+  width: 100%;
+  padding: 0.65rem;
+  font: inherit;
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  background: white;
+}
+
+.project-form textarea {
+  margin-bottom: 0.75rem;
+  resize: vertical;
+}
+
+.project-detail > section {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
 @media (max-width: 700px) {
   .home-page {
     grid-template-columns: 1fr;

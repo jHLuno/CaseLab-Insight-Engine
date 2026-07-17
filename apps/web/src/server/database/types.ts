@@ -75,6 +75,7 @@ export type Database = {
     };
     Views: Record<string, never>;
     Functions: {
+      create_project_with_questions: { Args: { project_description: string; project_name: string; project_questions?: Json; project_research_objective: string }; Returns: Database["public"]["Tables"]["projects"]["Row"] };
       delete_project_cascade: { Args: { project_uuid: string }; Returns: { storage_path: string }[] };
       delete_source_cascade: { Args: { source_uuid: string }; Returns: { storage_path: string }[] };
       provision_personal_organization: { Args: { owner_email: string; owner_user_id: string }; Returns: string };
