@@ -215,7 +215,7 @@ create policy "organization members can upload private source files"
 on storage.objects for insert
 with check (
   bucket_id = 'caselab-sources'
-  and owner_id = auth.uid()
+  and owner_id = auth.uid()::text
   and public.is_organization_member(public.storage_object_organization_id(name))
 );
 

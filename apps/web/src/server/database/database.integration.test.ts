@@ -49,4 +49,10 @@ describe("Supabase migration contract", () => {
     expect(migrationSql).not.toContain("on public.projects for all");
     expect(migrationSql).not.toContain("on public.sources for all");
   });
+
+  it("uses a text-compatible owner comparison for private storage uploads", async () => {
+    const migrationSql = await readMigrations();
+
+    expect(migrationSql).toContain("owner_id = auth.uid()::text");
+  });
 });
