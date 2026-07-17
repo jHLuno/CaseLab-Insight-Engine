@@ -16,6 +16,10 @@
     "test:e2e": "pnpm --filter @caselab/web test:e2e",
     "build": "pnpm -r build",
     "supabase:start": "supabase start",
-    "supabase:db:reset": "supabase db reset"
+    "supabase:db:reset": "supabase db reset",
+    "supabase:types": "supabase gen types typescript --local > apps/web/src/server/database/types.ts"
+  },
+  "devDependencies": {
+    "supabase": "^2.109.1"
   }
 }
