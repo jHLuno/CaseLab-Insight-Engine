@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { chunkSource } from "./chunk-source";
 import { normalizeSourceText } from "./normalize-source";
 import { validateTextFile } from "./source-schema";
+import { toDatabaseChunks } from "./source-service";
 
 describe("source ingestion boundaries", () => {
   it("keeps deterministic offsets while chunking normalized text", () => {
@@ -21,5 +22,15 @@ describe("source ingestion boundaries", () => {
         type: "text/plain"
       })
     ).rejects.toThrow("1 MiB");
+  });
+
+  it("maps chunk indexes to the database field name", () => {
+    expect(
+      toDatabaseChunks([
+        { endOffset: 4, index: 0, startOffset: 0, text: "Text" }
+      ])
+    ).toEqual([
+      { chunk_index: 0, content: "Text", end_offset: 4, start_offset: 0 }
+    ]);
   });
 });

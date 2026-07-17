@@ -2,7 +2,7 @@ import { z } from "zod";
 import type { Database } from "@/server/database/types";
 import { requireUser } from "@/server/auth/require-user";
 import { createServerSupabaseClient } from "@/server/supabase/server";
-import { chunkSource } from "./chunk-source";
+import { chunkSource, type SourceChunk } from "./chunk-source";
 import {
   pastedSourceInputSchema,
   sourceTitleSchema,
@@ -19,6 +19,15 @@ export type Source = Pick<
   "character_count" | "created_at" | "id" | "input_type" | "title"
 >;
 
+export function toDatabaseChunks(chunks: SourceChunk[]) {
+  return chunks.map((chunk) => ({
+    chunk_index: chunk.index,
+    content: chunk.text,
+    end_offset: chunk.endOffset,
+    start_offset: chunk.startOffset
+  }));
+}
+
 async function persistSource(input: {
   normalizedContent: string;
   projectId: string;
@@ -28,9 +37,11 @@ async function persistSource(input: {
 }): Promise<Database["public"]["Tables"]["sources"]["Row"]> {
   const projectId = projectIdSchema.parse(input.projectId);
   const sourceId = crypto.randomUUID();
-  const chunks = chunkSource(input.normalizedContent, {
-    maxCharacters: sourceChunkMaximumCharacters
-  });
+  const chunks = toDatabaseChunks(
+    chunkSource(input.normalizedContent, {
+      maxCharacters: sourceChunkMaximumCharacters
+    })
+  );
   const supabase = await createServerSupabaseClient();
   const { data, error } = await supabase.rpc("create_source_with_chunks", {
     input_character_count: input.normalizedContent.length,
@@ -92,9 +103,11 @@ export async function createUploadedSource(
   }
 
   try {
-    const chunks = chunkSource(normalizedContent, {
-      maxCharacters: sourceChunkMaximumCharacters
-    });
+    const chunks = toDatabaseChunks(
+      chunkSource(normalizedContent, {
+        maxCharacters: sourceChunkMaximumCharacters
+      })
+    );
     const { data, error } = await supabase.rpc("create_source_with_chunks", {
       input_character_count: normalizedContent.length,
       input_chunks: chunks,
