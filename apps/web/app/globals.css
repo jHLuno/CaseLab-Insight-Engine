@@ -135,6 +135,78 @@ h1 {
   line-height: 1.5;
 }
 
+.auth-page {
+  display: grid;
+  min-height: 100svh;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.auth-card {
+  display: grid;
+  gap: 1.25rem;
+  width: min(100%, 32rem);
+  padding: clamp(1.5rem, 5vw, 3rem);
+  border: 1px solid var(--rule);
+  background: var(--surface);
+}
+
+.auth-card h1 {
+  max-width: 10ch;
+  font-size: clamp(2.8rem, 8vw, 4.5rem);
+}
+
+.auth-form {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 0.6rem;
+}
+
+.auth-form input,
+.auth-form button {
+  min-height: 2.8rem;
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  font: inherit;
+}
+
+.auth-form input {
+  margin-bottom: 0.7rem;
+  padding: 0.6rem 0.75rem;
+  background: white;
+}
+
+.auth-form button {
+  margin-top: 0.5rem;
+  cursor: pointer;
+  color: white;
+  border-color: var(--evidence);
+  background: var(--evidence);
+}
+
+.auth-form input:focus-visible,
+.auth-form button:focus-visible,
+.auth-switch a:focus-visible {
+  outline: 3px solid #ecb952;
+  outline-offset: 3px;
+}
+
+.auth-message {
+  padding: 0.8rem;
+  color: #173d3a;
+  border-left: 3px solid var(--evidence);
+  background: #e2f0ed;
+  line-height: 1.45;
+}
+
+.auth-switch {
+  color: var(--muted-ink);
+}
+
+.auth-switch a {
+  color: var(--evidence);
+}
+
 @media (max-width: 700px) {
   .home-page {
     grid-template-columns: 1fr;

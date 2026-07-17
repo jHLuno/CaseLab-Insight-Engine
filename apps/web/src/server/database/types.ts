@@ -77,6 +77,7 @@ export type Database = {
     Functions: {
       delete_project_cascade: { Args: { project_uuid: string }; Returns: { storage_path: string }[] };
       delete_source_cascade: { Args: { source_uuid: string }; Returns: { storage_path: string }[] };
+      provision_personal_organization: { Args: { owner_email: string; owner_user_id: string }; Returns: string };
     };
     Enums: Record<string, never>;
     CompositeTypes: Record<string, never>;
