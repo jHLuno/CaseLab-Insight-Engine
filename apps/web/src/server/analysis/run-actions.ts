@@ -1,12 +1,17 @@
 "use server";
 
 import { tasks } from "@trigger.dev/sdk";
+import { revalidatePath } from "next/cache";
 import type { analyzeProject } from "../../../trigger/analyze-project";
 import { queueAnalysisRun, retryAnalysisRun, setAnalysisRunState, setAnalysisTriggerRunId } from "./run-service";
 
 export async function startAnalysisAction(projectId: string): Promise<void> {
   const run = await queueAnalysisRun(projectId);
-  await triggerAnalysisRun(run.id);
+  try {
+    await triggerAnalysisRun(run.id);
+  } finally {
+    revalidatePath(`/projects/${projectId}`);
+  }
 }
 
 export async function retryAnalysisAction(runId: string): Promise<void> {

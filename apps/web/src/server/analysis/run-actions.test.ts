@@ -2,11 +2,13 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const mocks = vi.hoisted(() => ({
   queueAnalysisRun: vi.fn(),
+  revalidatePath: vi.fn(),
   setAnalysisRunState: vi.fn(),
   setAnalysisTriggerRunId: vi.fn(),
   trigger: vi.fn()
 }));
 
+vi.mock("next/cache", () => ({ revalidatePath: mocks.revalidatePath }));
 vi.mock("@trigger.dev/sdk", () => ({ tasks: { trigger: mocks.trigger } }));
 vi.mock("./run-service", () => ({
   queueAnalysisRun: mocks.queueAnalysisRun,
@@ -33,5 +35,8 @@ describe("startAnalysisAction", () => {
     expect(mocks.trigger).toHaveBeenCalledWith("analyze-project", {
       analysisRunId: "11111111-1111-4111-8111-111111111111"
     });
+    expect(mocks.revalidatePath).toHaveBeenCalledWith(
+      "/projects/22222222-2222-4222-8222-222222222222"
+    );
   });
 });

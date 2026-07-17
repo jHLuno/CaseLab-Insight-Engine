@@ -1,4 +1,5 @@
 import { RunAnalysisButton } from "./run-analysis-button";
+import { AnalysisAutoRefresh } from "./analysis-auto-refresh";
 
 type AnalysisStatusProps = {
   retryAction: (formData: FormData) => void | Promise<void>;
@@ -12,7 +13,12 @@ export function AnalysisStatus({ retryAction, safeErrorCode, status }: AnalysisS
   }
 
   if (status === "queued" || status === "running") {
-    return <p className="analysis-status" role="status">{status === "queued" ? "Analysis queued." : "Analyzing saved sources…"}</p>;
+    return (
+      <div className="analysis-status" role="status" aria-live="polite">
+        <AnalysisAutoRefresh status={status} />
+        <p>{status === "queued" ? "Analysis queued. Preparing your saved sources…" : "Analyzing saved sources…"}</p>
+      </div>
+    );
   }
 
   if (status === "invalidated") {
