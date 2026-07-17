@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const workflowSteps = [
   {
     label: "Evidence",
@@ -22,7 +24,15 @@ export function HomePage() {
       </aside>
 
       <section className="home-page__content">
-        <p className="eyebrow">CaseLab / Insight Engine</p>
+        <header className="home-page__header">
+          <p className="eyebrow">CaseLab / Insight Engine</p>
+          <nav aria-label="Account navigation" className="home-page__actions">
+            <Link href="/sign-in">Sign in</Link>
+            <Link className="button-link" href="/sign-up">
+              Create your account
+            </Link>
+          </nav>
+        </header>
         <h1>Start with what people actually said.</h1>
         <p className="lede">
           A calm workspace for turning qualitative research into conclusions

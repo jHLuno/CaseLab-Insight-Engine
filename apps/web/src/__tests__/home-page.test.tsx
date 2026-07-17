@@ -10,5 +10,8 @@ describe("HomePage", () => {
     expect(markup).toContain("Evidence before conclusion");
     expect(markup).toContain("Evidence");
     expect(markup).toContain("Insight");
+    expect(markup).toContain('href="/sign-in"');
+    expect(markup).toContain('href="/sign-up"');
+    expect(markup).toContain("Create your account");
   });
 });

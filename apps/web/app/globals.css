@@ -66,6 +66,21 @@ body {
   padding: clamp(2rem, 8vw, 8rem);
 }
 
+.home-page__header,
+.home-page__actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.home-page__header {
+  justify-content: space-between;
+}
+
+.home-page__actions a:first-child {
+  color: var(--evidence);
+}
+
 .eyebrow {
   color: var(--muted-ink);
 }
@@ -357,6 +372,11 @@ h1 {
   .home-page__content {
     gap: 2rem;
     padding: 3.5rem 1.5rem;
+  }
+
+  .home-page__header {
+    align-items: start;
+    flex-direction: column;
   }
 
   .workflow-list {
